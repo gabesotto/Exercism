@@ -89,6 +89,15 @@ defmodule ListOps do
 
   @spec concat([[any]]) :: [any]
   def concat(ll) do
-    reduce(ll, [], &(append(&2, &1)))
+    _concat(reverse(ll), [])
   end
+
+  defp _concat([h | t], acc) do
+    _concat(t, append(h, acc))
+  end
+
+  defp _concat([], acc) do
+    acc
+  end
+
 end
