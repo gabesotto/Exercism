@@ -64,15 +64,18 @@ defmodule Minesweeper do
     list_to_matrix(ll, %{}, 0)
   end
 
+  # Make a map for each string in the list
   defp list_to_matrix([h | t], map, index) when is_binary(h) do
     map = Map.put(map, index, list_to_matrix(String.to_charlist(h), %{}, 0))
     list_to_matrix(t, map, index + 1)
   end
 
+  # Make a map for each char in the charlist
   defp list_to_matrix([h | t], map, index) do
     map = Map.put(map, index, h)
     list_to_matrix(t, map, index + 1)
   end
 
   defp list_to_matrix([], map, _index), do: map
+  
 end
